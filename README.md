@@ -8,12 +8,13 @@ Provides additional desirable functions for string processing not present in pac
 
 These functions are useful for printing string slice contents and variadic string arguments.
 
-| Function   | Explanation |
-| ---------- | ----------- |
-| Arg        | Shorthand for `fmt.Sprintf("%#q", arg)` which returns `arg` as a backquoted string where possible and sensible; e.g. for `arg = "\\n"` returns ``"`\n`"``, but for `arg = "\n"` returns `"\"\n\""`. |
-| Args       | Like `Arg()`, but for `[]string`, joined together with `, `. |
-| ArgsBefore | Like `Args()`, but appends an extra `, ` if at least one string was passed. |
-| ArgsAfter  | Like `Args()`, but prepends an extra `, ` if at least one string was passed. |
+| Function     | Explanation |
+| ------------ | ----------- |
+| Arg          | Returns `arg` as a backquoted string where possible and sensible; e.g. for `arg = "\\n"` returns \`\n\`, but for `arg = "\n"` returns "\\\\n". |
+| Args         | Like `Arg()`, but for `[]string`, joined together with `", "`. |
+| ArgsBefore   | Like `Args()`, but appends an extra `", "` if at least one string was passed. |
+| ArgsAfter    | Like `Args()`, but prepends an extra `", "` if at least one string was passed. |
+| ArgsBetween  | Like `Args()`, but prepends and appends an extra `", "` if at least one string was passed. |
 
 ## Bool to string _(bool.go)_
 
@@ -87,6 +88,12 @@ The functions in the following table are contained in sub-package `but`:
 | RangeLen      | Returns the amount of iterations which take place when ranging over given string. |
 | SliceRunes    | Slice a string with rune indices instead of byte indices. |
 | SliceClusters | Slice a string with [grapheme cluster](https://github.com/rivo/uniseg#grapheme-clusters) indices instead of byte or rune indices. |
+
+## Splitting *(split.go)*
+
+| Function          | Explanation |
+| ----------------- | ----------- |
+| SplitTwinUnescape | Split string around single occurrences of separator, reducing double occurrences to a single occurrence. |
 
 ## Substrings *(substrings.go)*
 

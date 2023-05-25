@@ -79,3 +79,22 @@ func TestArgsAfter(t *testing.T) {
 		}
 	}
 }
+
+func TestArgsBetween(t *testing.T) {
+	tests := []struct {
+		args     []string
+		expected string
+	}{
+		{nil, ""},
+		{[]string{}, ""},
+		{[]string{"x"}, ", `x`, "},
+		{[]string{"x", "y"}, ", `x`, `y`, "},
+		{[]string{"x\nz", "y"}, ", \"x\\nz\", `y`, "},
+	}
+	for i, test := range tests {
+		result := strut.ArgsBetween(test.args)
+		if result != test.expected {
+			t.Errorf("Test %d: ArgsBetween(%v) returned %s. Expected %s.", i, test.args, result, test.expected)
+		}
+	}
+}
